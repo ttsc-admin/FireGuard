@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FireGuard System</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/820/820336.png" type="image/png">
+    
+    <style>
+        /* รีเซ็ตขอบหน้าจอทั้งหมด */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #0A0F1A; /* ใส่สีพื้นหลังให้เนียนไปกับ Dark Mode ของคุณ */
+            overflow: hidden; /* บังคับไม่ให้หน้าเว็บหลักมี Scrollbar */
+        }
+        
+        /* 💡 วิชามารซ่อนแถบ Google อยู่ตรงนี้ครับ! */
+        .iframe-container {
+            position: absolute;
+            top: -28px; /* ดันกรอบขยับขึ้นไปด้านบน 28px (ความสูงของแถบ Google พอดี) */
+            left: 0;
+            width: 100%;
+            height: calc(100vh + 28px); /* ชดเชยความสูงที่ดันขึ้นไป เพื่อไม่ให้ขอบล่างแหว่ง */
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="iframe-container">
+        <iframe src="https://script.google.com/macros/s/AKfycbwcg3VBi0CTK0l1ZRnkNsjxXT6UAD8KYPQQqRmn9RIb81pMXcGpiGV2UMi7_jbDt6CJyw/exec?page=admin" allowfullscreen></iframe>
+    </div>
+
+</body>
+</html>
