@@ -7,37 +7,34 @@
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/820/820336.png" type="image/png">
     
     <style>
-        /* รีเซ็ตขอบหน้าจอทั้งหมด */
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: #0A0F1A; /* ใส่สีพื้นหลังให้เนียนไปกับ Dark Mode ของคุณ */
-            overflow: hidden; /* บังคับไม่ให้หน้าเว็บหลักมี Scrollbar */
+            margin: 0; padding: 0; width: 100%; height: 100vh;
+            background-color: #0A0F1A; overflow: hidden;
         }
-        
-        /* 💡 วิชามารซ่อนแถบ Google อยู่ตรงนี้ครับ! */
         .iframe-container {
             position: absolute;
-            top: -28px; /* ดันกรอบขยับขึ้นไปด้านบน 28px (ความสูงของแถบ Google พอดี) */
-            left: 0;
-            width: 100%;
-            height: calc(100vh + 28px); /* ชดเชยความสูงที่ดันขึ้นไป เพื่อไม่ให้ขอบล่างแหว่ง */
+            top: -28px; /* ตัดขอบแถบ Google ด้านบนทิ้ง */
+            left: 0; width: 100%; height: calc(100vh + 28px);
         }
-        
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
 
     <div class="iframe-container">
-        <iframe src="https://script.google.com/macros/s/AKfycbwcg3VBi0CTK0l1ZRnkNsjxXT6UAD8KYPQQqRmn9RIb81pMXcGpiGV2UMi7_jbDt6CJyw/exec?page=admin" allowfullscreen></iframe>
+        <iframe id="gas-frame" allowfullscreen></iframe>
     </div>
+
+    <script>
+        // 1. ลิงก์ Base URL ตัวหลักของคุณ (ไม่ต้องมี ? ต่อท้าย)
+        const baseUrl = "https://script.google.com/macros/s/AKfycbwcg3VBi0CTkOL1ZrNkNsjxXT6UADBkYPQQqRmn9Rlb8IpMXcGpiGV2UMl7_jbDt6CJyw/exec";
+        
+        // 2. ดึงข้อความทุกอย่างที่อยู่หลังเครื่องหมาย ? จาก URL ของ GitHub
+        const urlParams = window.location.search; 
+        
+        // 3. นำ Base URL มาต่อกับ Parameter แล้วยัดใส่ Iframe
+        document.getElementById('gas-frame').src = baseUrl + urlParams;
+    </script>
 
 </body>
 </html>
