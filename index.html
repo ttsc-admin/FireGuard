@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FireGuard System</title>
+    
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1161/1161388.png" type="image/png">
     
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/1161/1161388.png">
+    <meta name="apple-mobile-web-app-title" content="FireGuard">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100vh;
@@ -13,8 +18,8 @@
         }
         .iframe-container {
             position: absolute;
-            top: -0px; /* ตัดขอบแถบ Google ด้านบนทิ้ง */
-            left: 0; width: 100%; height: calc(100vh + 0px);
+            top: -0px; /* หมายเหตุ: ถ้าในอนาคตมีแถบขาวๆ ของ Google โผล่มาด้านบน ให้แก้เลขนี้เป็น -28px นะครับ */
+            left: 0; width: 100%; height: calc(100vh + 0px); /* และแก้ตรงนี้เป็น +28px */
         }
         iframe { width: 100%; height: 100%; border: none; }
     </style>
@@ -26,7 +31,7 @@
     </div>
 
     <script>
-        // 1. ลิงก์ Base URL ตัวหลักของคุณ (ไม่ต้องมี ? ต่อท้าย)
+        // 1. ลิงก์ Base URL ตัวหลักของ Google Apps Script
         const baseUrl = "https://script.google.com/macros/s/AKfycbwcg3VBi0CTkOL1ZrNkNsjxXT6UADBkYPQQqRmn9Rlb8IpMXcGpiGV2UMl7_jbDt6CJyw/exec";
         
         // 2. ดึงข้อความทุกอย่างที่อยู่หลังเครื่องหมาย ? จาก URL ของ GitHub
