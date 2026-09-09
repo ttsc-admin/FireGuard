@@ -31,15 +31,40 @@
     </div>
 
     <script>
-        // 1. ลิงก์ Base URL ตัวหลักของ Google Apps Script
-        const baseUrl = "https://script.google.com/macros/s/AKfycbwcg3VBi0CTkOL1ZrNkNsjxXT6UADBkYPQQqRmn9Rlb8IpMXcGpiGV2UMl7_jbDt6CJyw/exec";
-        
-        // 2. ดึงข้อความทุกอย่างที่อยู่หลังเครื่องหมาย ? จาก URL ของ GitHub
-        const urlParams = window.location.search; 
-        
-        // 3. นำ Base URL มาต่อกับ Parameter แล้วยัดใส่ Iframe
-        document.getElementById('gas-frame').src = baseUrl + urlParams;
-    </script>
+  // URL ของ Google Apps Script
+  const baseUrl =
+    "https://script.google.com/macros/s/AKfycbwcg3VBi0CTkOL1ZrNkNsjxXT6UADBkYPQQqRmn9Rlb8IpMXcGpiGV2UMl7_jbDt6CJyw/exec";
+
+  const gasFrame = document.getElementById("gas-frame");
+
+  // ส่ง extId จาก QR ไปให้ GAS ตอนเริ่มเปิดหน้า
+  gasFrame.src = baseUrl + window.location.search;
+
+  // รับคำสั่งจาก FireGuard ใน iframe หลังทำรายการสำเร็จ
+  window.addEventListener("message", function (event) {
+    const isAppsScriptFrame =
+      event.origin === "https://script.google.com" ||
+      /^https:\/\/(?:[a-z0-9-]+\.)*googleusercontent\.com$/i.test(event.origin);
+
+    if (
+      !isAppsScriptFrame ||
+      !event.data ||
+      event.data.type !== "fireguard:clear-asset-route"
+    ) {
+      return;
+    }
+
+    // ลบเฉพาะ extId แต่คง parameter อื่น เช่น view ไว้
+    const cleanUrl = new URL(window.location.href);
+    cleanUrl.searchParams.delete("extId");
+
+    window.history.replaceState(
+      {},
+      document.title,
+      cleanUrl.pathname + cleanUrl.search + cleanUrl.hash
+    );
+  });
+</script>
 
 </body>
 </html>
